@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma&display=swap');
+*{
+ font-family: 'Atma', cursive;
+ padding: 0px;
+ margin: 0px;
+ text-transform: capitalize;
+ letter-spacing: .7px;
+ word-spacing: 2px;
+}
+
+.box1::-webkit-scrollbar {
+    width: 1px;
+  }
+   
+  .box1::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0);
+  }
+   
+  .box1::-webkit-scrollbar-thumb {
+    background-color: rgba(169, 169, 169, 0);
+    outline: 1px solid rgba(112, 128, 144, 0);
+  }
+.con{
+    position: relative;
+}
+
+.box1{
+    background: rgba(229, 253, 218, 0.32);
+background: linear-gradient(90deg, rgba(223, 247, 212, 0.712) 9%, rgba(230, 247, 222, 0.47) 32%);
+box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    height: 470px;
+    width: 950px;
+    position: absolute;
+    overflow-x: hidden;
+    top:30px;
+    left: 25px;
+    border-radius: 15px;
+}
+.box2{
+    background: #bdff96;
+    background: linear-gradient(90deg, rgba(189,255,150,0.9448821765034139) 0%, rgba(130,255,163,1) 70%);
+    height: 550px;
+    width: 270px;
+    position: absolute;
+    left:1010px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    border-radius: 55px 0px 250px 0px;
+}
+.box3{
+    box-shadow: rgba(98, 222, 31, 0.35) 0px -50px 36px -28px inset;
+    position: absolute;
+    background: #bdff96;
+    background: linear-gradient(90deg, rgba(189,255,150,0.9448821765034139) 0%, rgba(130,255,163,1) 70%);
+    height: 50px;
+    width: 950px;
+    left:25px;
+    top:515px;
+    border-radius: 25px 25px 0px 0px;
+}
+.box1 h2{
+    text-align: center;
+    background: #63FF72;
+    word-spacing: 10px;
+    letter-spacing: 1px;
+}
+
+.box3 ul li{
+    display: inline;
+    margin-left: 70px;
+    margin-top: 20px;
+}
+.box3 ul li a{
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    font-size: 20px;
+}
+.box3 ul li a:hover{
+    color: rgb(86, 86, 86);
+}
+.box3 ul{
+    margin-top: 10px;
+    margin-left: 200px;
+}
+.box2 input{
+    margin-top: 30px;
+    margin-left: px;
+    height: 35px;
+    width: 200px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    margin-left: 30px;
+    background-color: #E0FFAD;
+    font-size: 17px;
+    font-weight: 500;
+}
+.box2 input:hover{
+    background-color: #FFF963;
+    transition: all ease-in .5s;
+}
+.box2 form{
+    margin-top: 20px;
+}
+
+form .okac{
+    background-color: #FFF963;
+}
+.chu{
+    min-height: 300px;
+    width: 650px;
+    background-color: rgb(212, 255, 209);
+    margin: 10px auto;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    text-align: center;
+    
+}
+.chu:hover{
+    opacity: 1;
+    transition: all  ease .7s;
+}
+
+.chu input[type='text']
+,.chu input[type='email'],.chu input[type='date'],.chu input[type='file'],.chu input[type='password'],.chu input[type='select']{
+    height: 40px;
+    border: none;
+    outline: none;
+    margin-top: 10px;
+    background: none;
+    border-bottom: .5px solid rgb(36, 36, 36);
+    padding:0px;
+    font-size: 14px;
+    font-weight: bold;
+}
+.mess{
+    position: absolute;
+    left: 100px;
+    transition: all ease .5s;
+}
+form{
+    text-align: center;
+}
+label{
+    padding-top: 20px;
+}
+.ser{
+    height: 35px;
+    margin-top: 10px;
+    background-color: #E0FFAD;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+}
+.kar{
+    margin: 5px;
+    margin-top: 15px;
+    min-height: 30px;
+    min-width: 70px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background-color: #ffffff;
+    padding: 5px;  
+}
+.kar:hover{
+    background: rgb(221,255,137);
+    background: linear-gradient(90deg, rgba(221,255,137,0.7961309523809523) 28%, rgba(150,255,97,0.7849264705882353) 47%, rgba(121,251,175,0.9950105042016807) 71%);
+    transition: all ease .5s;
+    color: rgb(0, 0, 0);
+    background-size: 200%;
+    animation: animateBg 2s ease infinite;
+}
+.chu input[type ='submit']{
+    margin: 5px;
+    margin-top: 15px;
+    min-height: 30px;
+    min-width: 70px;
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+@keyframes animateBg {
+
+    0%{
+      background-position: 0%;
+    }
+    25%{
+        background-position: 100%;
+    }
+    50%{ 
+      background-position: 0%;
+    }
+    75%{
+        background-position: 100%;
+    }
+    100%{
+      background-position: 0%;
+    }
+  }
+.chu input[type ='submit']:hover{
+    background: rgb(221,255,137);
+    background: linear-gradient(90deg, rgba(221,255,137,0.7961309523809523) 28%, rgba(150,255,97,0.7849264705882353) 47%, rgba(121,251,175,0.9950105042016807) 71%);
+    transition: all ease .5s;
+    color: rgb(0, 0, 0);
+    background-size: 200%;
+    animation: animateBg 2s ease infinite;
+
+}
+
+a{text-decoration: none;}

@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body>
+    <!--functions for employee-->
+    <div class="con">
+    {% if role == 'emp'%}
+    <div class="box2">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit"name="ask_leave" value="askleave">
+            <input type="submit" name="subre" value="submit report">
+            <input type="submit" name="edit" value="edit">
+            <input type="submit" name="viwescr" value="viwe score">
+            <input type="submit" name="logout" value="logout">
+        </form>
+        </div>
+        <div class="box1">
+            <h2>Seimen's HR management - {{object}}</h2> 
+        {% if function == 'askleave' %}
+        <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %}
+                employee code: <input type="text" name="empid" placeholder="empid" value="{{object.Emp_code}}"><br>
+                leave date : <input type="date" name="date"> <br>
+                reason of leave : <input type="text" name="reason" placeholder='reason'><br>
+                in person on leave: <input type="text" name="inper" placeholder="in_person_charge"><br>
+                <input type="submit" name="leavesubmit" value="ask leave">
+            </form>
+        </div>
+        {% elif function  == 'submit_report'%}
+        <div class="chu">
+        <form action="" method="post">
+            {% csrf_token %}
+            employee code: <input type="text" name="empid" placeholder="empid" value="{{object.Emp_code}}"><br>
+            submit date : <input type="date" name="date"><br>
+            Document/Image : <input type="file" name="file" placeholder='document_overview'><br>
+            Complition status : <input type="text" name="comstatus" placeholder="complition_status"><br>
+            project name : <input type="text" name="pname" placeholder="project name"><br>
+            <input type="submit" name="reportsub" value="submit report"><br>
+        </form>
+    </div>
+        {% elif function == 'view_score' %}
+            score {{object.employee_score}}            
+        {% elif function == 'edit_personal' %}
+        <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h3>editing personal data</h3>
+                employee code : <input type="text"  name="empcode" placeholder="employee code" value="{{object.Emp_code}}" readonly><br>
+                first name : <input type="text"  name="fname"   placeholder="first name"    value="{{object.first_name}}"> <br>
+                last name : <input type="text"  name="lname"   placeholder="last name"     value="{{object.last_name}}"><br>
+                email : <input type="email" name="email"   placeholder = "email"       value="{{object.email}}"><br>
+                employee score : <input type="text"  name="empscr"  placeholder="employeescore" value="{{object.employee_score }}" readonly> <br>
+                joined_date :<input type="text"  name="jdt"     placeholder="joined_date"   value="{{object.joined_date}}" readonly> <br>
+                phone number : <input type="text"  name="phn"     placeholder="phone.no"      value="{{object.phone}}"><br>
+                address : <input type="text"  name="adrs"    placeholder="address"       value="{{object.address}}"><br>
+                skills : <input type="text"  name="skills"  placeholder="skills"        value="{{object.skills}}"> <br>
+                current working project : <input type="text"  name="cwp"     placeholder="current working 
+                project"                                                       value="{{object.c_w_p}}" readonly> <br>
+                team manager : <input type="text" name="manc"     placeholder="under which manager"
+                                                                               value="{{object.manager}}" readonly> <br>
+                <input type="submit" name="epd" value="save changes">
+            </form>
+            </div></div>
+                {% endif %}
+            </div>
+
+
+
+
+    <!--functions for hr-->
+    <div class="con">
+    {% elif role == 'hr' %}
+       <div class="box2">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit" name="gleave" value="give leave">
+            <input type="submit" name = 'adem' value="add empolyee">
+            <input type="submit" name="viewhr" value="view">
+            <input type="submit" name="logout" value="logout">
+            
+        </form></div>
+        <div class="box1">
+            <h2>Seimen's HR management - {{object}}</h2> 
+        {% if function == 'leave' %}
+            <h3 style="text-align: center;">leave request by empolyees</h3>
+            {% for i in leok %}
+            <h3 style="text-align: centre;"></h3>
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+                employee code : <input type="text"  value="{{i.empidforleave}}" name="eidl" placeholder="emp_code"> <br><br>
+                reason for leave<input type="text" value="{{i.reasonofleave}}" name="rfl" placeholder="resonof leave"> <br><br>
+                date fo leave <input type="text" value="{{i.dateofleave}}" name="dtl" placeholder="date"> <br><br>
+                in person charge on leave<input type="text" value="{{i.inperson_charge}}"  placeholder="in person charge"> <br><br>
+                aprroved by <input type="text" name="apby" placeholder="aprroved by" value="{{object}}"><br>
+                <input type="submit" name="chuchu" value="approve"> 
+                <input type="submit" name="chucha" value="deny">
+            </form></div>
+            {%endfor%}
+        {% elif function == 'adde' %}
+        <h3 style="text-align: center;">send request to admin to new employee</h3>
+        <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+            empolye code : <input type="text" name="Emp_code"       placeholder="emp code" > <br><br>
+            first name : <input type="text" name="first_name"     placeholder="first name" > <br><br>
+            last name : <input type="text" name="last_name"      placeholder="last name" > <br><br>
+            password : <input type="password" name="password"       placeholder="password" > <br><br>
+            email : <input type="email" name="email"          placeholder="email" > <br><br>
+            empolyee score : <input type="text" name="employee_score" placeholder="employee score " value="0"> <br><br>
+            joined date : <input type="date" name="joined_date"    placeholder="" > <br><br>
+            phone number : <input type="text" name="phone"          placeholder="phone. no" > <br><br>
+            address : <input type="text" name="address"        placeholder="address" > <br><br>
+            skills : <input type="text" name="skills"         placeholder="skills" > <br><br>
+            current working project : <input type="text" name="c_w_p"          placeholder="current working progamee" > <br><br>
+
+            team manager <select name="m_under" id="">
+                {% for i in mano%}
+                    <option value="{{i.Emp_code}}">{{i}}</option>
+                {%endfor%}
+            </select> <br><br>
+
+            request by <input type="text" name="request_by"     placeholder="requested by" value="HR / {{object}}"> <br><br>
+            <input type="submit" name="subforadde">
+        </form></div>
+        {%elif function == 'hrview' %}
+        <form action="" method="post">{% csrf_token %} <input type="text" name="semo" class="ser"> <input type="submit" name="searchhr" class ='kar' value="search"></form><br>
+            {% for i in allo %}
+                <div class="chu">
+                <form action="" method="post">
+                    {% csrf_token %} <br>
+                    employee code : <input type="text" name="Emp_code"       placeholder="emp code" value="{{i.Emp_code}}" readonly><br> <br>
+                    first name : <input type="text" name="first_name"     placeholder="first name" value="{{i.first_name}}"> <br> <br>
+                    last name: <input type="text" name="last_name"      placeholder="last name" value="{{i.last_name}}"> <br> <br>
+                    email: <input type="email" name="email"         placeholder="email" value="{{i.email}}"><br> <br>
+                    joined date : <input type="text" name="joined_date"    placeholder="" value="{{i.joined_date}}" readonly> <br> <br>
+                    phone : <input type="text" name="phone"          placeholder="phone. no" value="{{i.phone}}"> <br> <br>
+                    address : <input type="text" name="address"        placeholder="address" value="{{i.address}}"> <br> <br>
+                    skills : <input type="text" name="skills"         placeholder="skills" value="{{i.skills}}"> <br> <br>
+                    current working project : <input type="text" name="c_w_p"placeholder="current working progamee" value="{{i.c_w_p}}" readonly> <br><br>
+                    <input type="submit" name="editemhr" value="edit" > 
+                </form></div><br>
+            {% endfor %}
+            {%elif function == 'hrview' %}
+            <form action="" method="post">{% csrf_token %} <input type="text" name="semo"> <input type="submit" name="searchhr" value="search"></form><br>
+                {% for i in allo %}
+                    <div class="chu">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <input type="text" name="Emp_code"       placeholder="emp code" value="{{i.Emp_code}}" readonly>
+                        <input type="text" name="first_name"     placeholder="first name" value="{{i.first_name}}">
+                        <input type="text" name="last_name"      placeholder="last name" value="{{i.last_name}}">
+                        <input type="email" name="email"          placeholder="email" value="{{i.email}}">
+                        <input type="text" name="joined_date"    placeholder="" value="{{i.joined_date}}" readonly>
+                        <input type="text" name="phone"          placeholder="phone. no" value="{{i.phone}}">
+                        <input type="text" name="address"        placeholder="address" value="{{i.address}}">
+                        <input type="text" name="skills"         placeholder="skills" value="{{i.skills}}">
+                        <input type="text" name="c_w_p"          placeholder="current working progamee"  readonly>
+                        <input type="submit" name="editemhr" value="edit" >
+                    </form></div><br>
+                {% endfor %}
+            
+        {%endif%}
+    </div></div>
+    </div>
+
+
+
+
+
+    <!--functions for the manager-->
+    {% elif role == 'man'%}
+        <div class="con">
+            <div class="box2">
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="submit"   name="manview"    value="view">
+            <input type="submit"   name="getre"      value="get report">
+            <input type="submit"   name="evemp"      value="score empolye">
+            <input type="submit"   name="editper"    value="edit profile">
+            <input type="submit"   name="cemp"       value="change project">
+            <input type="submit"   name="logout"     value="logout">
+            
+        </form></div>
+            <div class="box1">
+                <h2>Seimen's HR management - {{object}}</h2> 
+            {% if function == 'mview'  %}
+
+            <form action="" method="post">{% csrf_token %} 
+                <input type="text"  class="ser" name="semo" placeholder="search by Employee code" > 
+                <input type="submit" name="searchm" value="search" class="kar">
+            </form>
+            
+                
+                {% for i in allo %}
+                <div class="chu"><br>
+                   employee code: {{i.Emp_code}} <br> <br>
+                   first name {{i.first_name}} <br> <br>
+                   last name {{i.last_name}} <br> <br>
+                   phone {{i.phone}} <br> <br>
+                   email {{i.email}} <br> <br>
+                   address {{i.address}} <br> <br>
+                    <br></div>
+                {% endfor %}
+            {% elif function == 'escore'%}
+                    <h3 style="text-align: center;">changing the employee score</h3>
+                {% for i in empo %}<div class="chu">
+                    <form action="" method="post">
+                        {% csrf_token %} <br>
+                        employee code : <input type="text" name="eempid" value="{{i.Emp_code}}"> <br> <br>
+                        current performance score : <input type="text" name="es" value="{{i.employee_score}}">/10 <br> <br>
+                        <input type="submit" name="ess" value="make the change"><br>
+                    </form></div>
+                {% endfor %}
+                
+            {% elif function == 'eper' %}
+            <h3 style="text-align: center;"> editing personal data</h3>
+            <div class="chu">
+                <form action="" method="post">
+                    {% csrf_token %} <br>
+                    employee code(can't change) : <input type="text" name="emcode" value="{{object.Emp_code}}" readonly placeholder="employee code"> <br> <br>
+                    first name : <input type="text" name="fname" value="{{object.first_name}}" placeholder="firstname"> <br> <br>
+                    last name : <input type="text" name="lname" value="{{object.last_name}}" placeholder="lastname"> <br> <br>
+                    email : <input type="text" name="email" value="{{object.email}}" placeholder="email"> <br> <br>
+                   
+                    joined date(can't change) : <input type="text" name="jdt" value="{{object.joined_date}}" readonly> <br> <br>
+                    phone : <input type="text" name="phn" value="{{object.phone}}" placeholder="phone"> <br> <br>
+                    <input type="submit" name="eman" value="make the change"> <br>
+                </form></div>
+            {% elif function == 'cempr' %}
+                
+                    
+                    {% for i in emp_o %}
+                    <div class="chu">
+                    <form action="" method="post">
+                        {% csrf_token %} <br>
+                        employee code : <input type="text" value="{{i.Emp_code}}" name="chemid"> <br><br>
+                        change current working project : <input type="text" value="{{i.c_w_p}}" name="cwpc"><br><br>
+                        <input type="submit" value="make chnages" name="cwps"><br></div>
+                    </form>
+                    {% endfor %}
+               
+
+            {% elif function == 'gtr' %}
+
+                {% for i in kocha %}
+                <div class="chu"><br>
+                  Employee code : {{ i.empid_for_report}} <br> <br>
+                  Document name : {{ i.doucment_overview}} <br> <br>
+                  Report submited date : {{ i.submit_date}} <br> <br>
+                  complition status : {{ i.compliction_status}} <br> <br>
+                  project name : {{ i.project_name}} <br></div>
+                {% endfor %}
+            {% endif %} 
+        </div>
+        </div>
+
+
+
+
+    <div class="con">
+
+    {% elif role == 'admin' %}
+        <div class="box2">
+        <form action="" method="post">
+            {% csrf_token %}
+            
+            <input type="submit" name="viewall" value="view">
+            <input type="submit" name="addemp" value="add a empolyee">
+            <input type="submit" name="addhr" value="add a hr">
+            <input type="submit" name="addman" value="add a manager">
+            <input type="submit" name="nreq" value="add new user requests">
+            <input type="submit" name="logout" value="logout">
+
+        </form></div>
+        <div class="box1">
+            <h2>Seimen's HR management - {{object}}</h2> 
+        {% if function == 'viewall' %}
+            <form action="" method="post">{% csrf_token %} <input type="text" name="searchina" class="ser" placeholder="search our workers"><input type="submit" name="searchvi" class="kar" value="search"></form>
+            {% for i in e%}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+                
+                employee code : <input type="text" name="no" value="{{i.Emp_code}}"> <br><br>
+                first name : <input type="text" name="nfn" value="{{i.first_name}}"> <br><br>
+                last name : <input type="text" name="nln" value="{{i.last_name}}"> <br><br>
+                email : <input type="text" name="ne" value="{{i.email}}"> <br><br>
+                joined date : <input type="text" name="" value="{{i.joined_date}}">  <br><br>
+                phone : <input type="text" name="np" value="{{i.phone}}"> <br><br>
+                <input type="submit" name="editrole" value="edit"> <br>
+            </form></div>
+            {% endfor %} <br>
+
+            
+           
+            {% for i in m%}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %}
+            empolyee code : <input type="text" name="no" value="{{i.Emp_code}}"><br><br>
+            first name : <input type="text" name="nfn" value="{{i.first_name}}"><br><br>
+            last name : <input type="text" name="nln" value="{{i.last_name}}"><br><br>
+            email : <input type="text" name="ne" value="{{i.email}}"><br><br>
+            joined date : <input type="text" name="" value="{{i.joined_date}}"><br><br>
+            phone : <input type="text" name="np" value="{{i.phone}}"><br><br>
+            <input type="submit" name="editrole" value="edit"><br>
+            </form></div>
+            {%endfor%} <br>
+         
+            {% for i in h%}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+            employee code : <input type="text" name="no" value="{{i.Emp_code}}"><br><br>
+            first name : <input type="text" name="nfn" value="{{i.first_name}}"><br><br>
+            last name : <input type="text" name="nln" value="{{i.last_name}}"><br><br>
+            email : <input type="text" name="ne" value="{{i.email}}"><br><br>
+            joined date : <input type="text" name="" value="{{i.joined_date}}"><br><br>
+            phone : <input type="text" name="np" value="{{i.phone}}"><br><br>
+            <input type="submit" name="editrole" value="edit"> 
+            </form></div>
+            {%endfor%} <br>
+
+            {% for i in heo %}
+            <div class="chu">
+            <form action="" method="post" > {% csrf_token %} <br>
+            empolyee code : <input type="text" name="no" value="{{i.Emp_code}}"><br><br>
+            first name : <input type="text" name="" value="{{i.first_name}}"><br><br>
+            last name : <input type="text" name="" value="{{i.last_name}}"><br><br>
+            email : <input type="text" name="" value="{{i.email}}"><br><br>
+            joined date : <input type="text" name="" value="{{i.joined_date}}"><br><br>
+            phone : <input type="text" name="" value="{{i.phone}}"><br><br>
+            <input type="submit" name="editrole" value="edit"> <br></form></div>
+            {%endfor%}
+
+        {% elif function == 'addemp' %}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %}
+                empolyee code : <input type="text" name="Emp_code" placeholder="Emp_code"><br><br>
+                first name : <input type="text" name="first_name" placeholder="first_name"><br><br>
+                last name : <input type="text" name="last_name" placeholder="last_name"><br><br>
+                password : <input type="password" name="password" placeholder="password"><br><br>
+                email : <input type="email" name="email" placeholder="email"><br><br>
+            
+                employee score : <input type="text" name="employee_score" placeholder="employee_score"><br><br>
+                joined date : <input type="date" name="joined_date" placeholder="Joined_date"><br><br>
+                phone : <input type="text" name="phone" placeholder="phone"><br><br>
+                address : <input type="text" name="address" placeholder="address"><br><br>
+                skills : <input type="text" name="skills" placeholder="skills"><br><br>
+                current working project : <input type="text" name="c_w_p" placeholder="current working process"><br><br>
+                team manager : <select name="manager" id="">
+                    {% for i in iop %}
+                    <option value="{{i.id}}">{{i}}</option>
+                    {% endfor %}
+                </select><br><br>
+                <input type="submit" value="add empolyee" name='addemo'>
+            </form></div>
+        {% elif function == 'addhr' %}
+        <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+                empolyee code : <input type="text" name="Emp_codeh" placeholder="Emp_code"><br><br>
+                first name : <input type="text" name="first_nameh" placeholder="first_name"><br><br>
+                last name : <input type="text" name="last_nameh" placeholder="last_name"><br><br>
+                password : <input type="password" name="passwordh" placeholder="password"><br><br>
+                email : <input type="email" name="emailh" placeholder="email"><br><br>
+                joined date : <input type="date" name="joined_dateh" placeholder="joined_date"><br><br>
+                phone : <input type="text" name="phoneh" placeholder="phone"><br><br>
+                <input type="submit" name="addhro">
+            </form></div>
+        {% elif function == 'addman' %}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %}
+                empolyee code : <input type="text" name="Emp_codeh" placeholder="Emp_code"><br><br>
+                first name : <input type="text" name="first_nameh" placeholder="first_name"><br><br>
+                last name : <input type="text" name="last_nameh" placeholder="last_name"><br><br>
+                password : <input type="password" name="passwordh" placeholder="password"><br><br>
+                email : <input type="email" name="emailh" placeholder="email"><br><br>
+                joined date : <input type="date" name="joined_dateh" placeholder="joined_date"><br><br>
+                phone : <input type="text" name="phoneh" placeholder="phone"> <br><br>
+                <input type="submit" name="addmano">
+            </form>
+        </div>
+        {% elif function == 'nreqo' %}
+        EMPLOYESS
+            {% for i in puo %}
+            <div class="chu">
+            <form action="" method="post">
+                {% csrf_token %} <br>
+                empolyee code : <input type="text" name="Emp_code" value="{{i.Emp_code}}"><br><br>
+                first name : <input type="text" name="first_name" value="{{i.first_name}}"><br><br>
+                last name : <input type="text" name="last_name" value="{{i.last_name}}"><br><br>
+                password : <input type="text" name="password" value="{{i.password}}"><br><br>
+                email : <input type="email" name="email" value="{{i.email}}"><br><br>
+                empolyee score : <input type="text" name="employee_score" value="{{i.employee_score}}"><br><br>
+                joined date : <input type="date" name="joined_date" value="{{i.joined_date}}">{{i.joined_date}}<br><br>
+                phone : <input type="text" name="phone" value="{{i.phone}}"><br><br>
+                address : <input type="text" name="address" value="{{i.address}}"><br><br>
+                skills : <input type="text" name="skills" value="{{i.skills}}"><br><br>
+                current working program : <input type="text" name="c_w_p" value="{{i.c_w_p}}"><br><br>
+                team manager : <select name="manager" id="">
+                    {%for i in monu%}
+                    <option value="{{i.id}}">{{i}}</option>
+                    {%endfor%}
+                </select><br><br>
+                requested by : <input type="text" name="request_by" value="{{i.request_by}}"><br><br>
+                <input type="submit" value="aprrove" name="apreq">
+            </form></div><br>
+            {% endfor %}
+
+        HRs
+        {% for i in uuo%}
+        <div class="chu">
+        <form action="" method="post">{% csrf_token%}
+            empolyee code : <input type="text" name="Emp_code" value="{{i.Emp_code}}"><br><br>
+            first name : <input type="text" name="first_name" value="{{i.first_name}}"><br><br>
+            last name : <input type="text" name="last_name" value="{{i.last_name}}"><br><br>
+            password : <input type="text" name="password" value="{{i.password}}"><br><br>
+            email : <input type="text" name="email" value="{{i.email}}"><br><br>
+            joined date : <input type="date" name="joined_date" value="{{i.joined_date}}">{{i.joined_date}}<br><br>
+            phone : <input type="text" name="phone" value="{{i.phone}}"><br><br>
+            requested by<input type="text" name="req_by" value="{{i.req_by}}"><br><br>
+            <input type="submit" name="raddhr" value="approve">
+        </form></div><br>
+        {%endfor%}
+
+        MANAGERs
+        {%for i in guo%}
+        <div class="chu">
+        <form action="" method="post">{%csrf_token%}
+            empolyee code : <input type="text" name="Emp_code" value="{{i.Emp_code}}"> <br><br>
+            first name : <input type="text" name="first_name" value="{{i.first_name}}"><br><br>
+            last name : <input type="text" name="last_name" value="{{i.last_name}}"><br><br>
+            password : <input type="text" name="password" value="{{i.password}}"><br><br>
+            email : <input type="text" name="email" value="{{i.email}}"><br><br>
+            joined date : <input type="date" name="joined_date" value="{{i.joined_date}}">{{i.joined_date}}<br><br>
+            phone : <input type="text" name="phone" value="{{i.phone}}"><br><br>
+            requested by : <input type="text" name="req_by" value="{{i.req_by}}"><br><br>
+            <input type="submit" name="raddman" value="approve">
+        </form></div> <br>
+        {%endfor%}</div>
+        {%endif%}
+    </div>  
+
+    
+
+
+
+
+
+    {%else%}
+        guest
+
+    {% endif %}
+
+    <div class="box3">
+        <ul>
+            <li> <a href="" class="active" style="color: rgb(131, 131, 131);">home</i></a></li>
+            <li> <a href="">about</a></li>
+            <li> <a href="">feedback</a></li>
+            <li> <a href="">contact</a></li>
+            
+        </ul></div>
+
+    <div class="mess">
+        {{message}}
+    </div>
+</body>
+</html>

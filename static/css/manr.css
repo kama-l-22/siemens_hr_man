@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma&display=swap');
+*{
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+    font-family: 'Atma', cursive;
+    text-transform: capitalize;
+}
+
+body{
+	height: 150vh;
+	width: 100%;
+}
+
+.container{
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 100px;
+}
+
+
+.contact-box{
+	max-width: 850px;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #ffffffd6;
+	box-shadow: 0px 0px 19px 5px rgba(249, 246, 246, 0.19);
+}
+
+.left{
+	background: url("q3.png") no-repeat center;
+	background-size: cover;
+	height: 93%;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom:20px;
+}
+
+.right{
+	padding: 25px 40px;
+}
+
+h2{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+    color: rgb(23, 219, 65);
+}
+
+h2:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: #25d21c;
+}
+
+.field{
+	width: 100%;
+	border: 2px solid rgba(0, 0, 0, 0);
+	outline: none;
+	background-color: #fffffff5;
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	margin-bottom: 22px;
+	transition: .3s;
+}
+
+.field:hover{
+	background-color: rgba(14, 232, 18, 0.941);
+}
+
+textarea{
+	min-height: 150px;
+}
+
+.btn{
+	width: 100%;
+	padding: 0.5rem 1rem;
+	background-color: #1adb37;
+	color: rgb(16, 18, 18);
+	font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn:hover{
+    background-color: #fafe0b;
+}
+
+.field:focus{
+    border: 2px solid rgba(27, 60, 159, 0.47);
+    background-color: rgb(228, 232, 13);
+}
+
+@media screen and (max-width: 880px){
+	.contact-box{
+		grid-template-columns: 1fr;
+	}
+	.left{
+		height: 100px;
+	}
+}

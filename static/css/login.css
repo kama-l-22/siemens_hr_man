@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma&display=swap');
+*{
+ font-family: 'Atma', cursive;
+ padding: 0px;
+ margin: 0px;
+ text-transform: capitalize;
+ letter-spacing: .7px;
+ word-spacing: 2px;
+}
+
+ .box{
+     background: rgb(189,255,150);
+     background: linear-gradient(90deg, rgba(189,255,150,0.9448821765034139) 0%, rgba(220,255,204,1) 70%);
+     width: 700px;
+     height: 470px;
+     margin: 40px auto;
+     position: relative;
+     border-radius: 15px;
+     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+
+ }
+
+ @keyframes animateBg {
+
+     0%{
+       background-position: 0%;
+     }
+     25%{
+         background-position: 100%;
+     }
+     50%{ 
+       background-position: 0%;
+     }
+     75%{
+         background-position: 100%;
+     }
+     100%{
+       background-position: 0%;
+     }
+   }
+ .right{
+     background-color: blanchedalmond;
+     position: absolute;
+     border-radius: 15px;
+     height: 470px;
+     width: 300px;
+     
+    
+     
+ }
+ .right img{
+     border-radius: 15px;
+     height: 470px;
+     width: 300px;
+ }
+ .left{
+     background: #bdff96;
+background: linear-gradient(90deg, rgba(189,255,150,0.9448821765034139) 0%, rgba(130,255,163,1) 70%);
+     position: absolute;
+     border-radius: 15px;
+     height: 390px;
+     width: 300px;
+     left:350px;
+     top:40px;
+     background-size: 200% 200%;
+     animation: animateBg 6s ease infinite;
+ }
+ .left .theimg{
+     background-image: url('Untitled_Design__5_-removebg-preview.png');
+     
+     width: 110px;
+     height: 110px;
+     position:absolute;
+     left: 95px;
+     top: 20px;
+
+ }
+ form{
+     position: absolute;
+     top:100px;
+               
+ 
+ }
+ .sometext{
+     position: absolute;
+     top:330px;
+     left:55px;
+     word-spacing: 5px;
+ }
+
+ .somet{
+    margin-top: 5px;
+    position: absolute;
+     top:420px;
+     left:50px;
+     word-spacing: 5px;
+ }
+
+ .somet a{
+    text-decoration: none;
+    color: black;
+ }
+ .sometexttop{
+     position: absolute;
+     top:-90px;
+     left:90px;
+     font-size: 15px;
+     letter-spacing: 10px;
+     font-weight: bold;
+ }
+ input[type='text'],input[type = 'password']{
+     height: 40px;
+     width: 200px;
+     margin-left: 50px;
+     margin-top: 20px;
+     border-radius: 15px;
+     outline: none;
+     border: none;
+     text-align: center;
+     font-size: 12px;
+    
+ }
+ .error{
+     font-size: 15px;
+     margin-top: 20px;
+     color: red;
+     text-align: center;
+ }
+ input[type = 'submit']{
+     margin-top: 25px;
+     margin-left: 87px;
+     height: 35px;
+     width: 130px;
+     border-radius: 15px;
+     border: none;
+     outline: none;
+     background-color: #DCFFCC;
+ }
+ input[type = 'password']::placeholder{
+     letter-spacing: 2px;
+ }
+ input[type='text']:focus,input[type = 'password']:focus{
+     border: 1.2px solid rgb(255, 170, 163);
+     transition: border linear 2.5s;
+     scale: 99%;
+     
+     
+ }
+
+ input[type = 'submit']:hover{
+     background: rgb(162,255,110);
+background: linear-gradient(90deg, rgba(162,255,110,0.9448821765034139) 8%, rgba(0,185,49,1) 72%);
+     transition:  all cubic-bezier(0,1.7,1,-1.36) .6s;
+     color: #fff;
+     font-weight: 700;
+     font-size: 15px;
+     background-size: 200% 200%;
+     animation: animateBg 2s ease infinite;
+ }
+
+ a{
+    text-decoration: none;
+ }

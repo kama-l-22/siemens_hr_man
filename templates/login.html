@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static%}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <div class="box">
+        <div class="right"><img src="{% static 'img/loginhr.png' %}" alt=""></div>
+        <div class="left">
+        <img src="{% static 'img/peru.png' %}" alt=""class="theimg">
+        <form action="" method="post">
+        {% csrf_token %}
+        <div class="sometexttop">WELCOME</div>
+        <input type="text" placeholder="Emp_code" name="empcode">
+        <input type="password" placeholder="password" name="pword">
+        <input type="submit" name="loginsubmit" >
+        <div class="error">{{error}}</div>
+        </form>
+        <div class="sometext">A quality product by KOKO</div>
+        
+    </div>
+    <div class="somet">are you new ? <a href="{% url 'manreg' %}"> Manager </a> / <a href="{% url 'hrreg' %}">Hr</a></div>
+</div>
+</body>
+</html>
